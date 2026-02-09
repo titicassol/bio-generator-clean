@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-pastel-pink via-pastel-lavender to-pastel-blue min-h-screen;
+    font-family: 'Quicksand', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .magic-card {
+    @apply bg-white/70 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/60 transition-all duration-500 hover:shadow-2xl hover:scale-[1.02] relative overflow-hidden;
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.3), 0 0 60px rgba(147, 51, 234, 0.1);
+  }
+  
+  .magic-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s;
+    opacity: 0;
+  }
+  
+  .magic-card:hover::before {
+    animation: shimmer 0.5s ease-in-out;
+  }
+  
+  .pastel-button {
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 text-white font-semibold py-4 px-8 rounded-full shadow-xl transition-all duration-500 hover:shadow-2xl hover:scale-105 active:scale-95 relative overflow-hidden;
+    background-size: 200% 100%;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  .pastel-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+  
+  .pastel-button:hover::before {
+    left: 100%;
+  }
+  
+  .input-field {
+    @apply bg-white/50 backdrop-blur-md border border-white/70 rounded-2xl px-5 py-4 
+           focus:outline-none focus:ring-2 focus:ring-purple-300/50 focus:border-transparent 
+           transition-all duration-500 hover:bg-white/60 hover:shadow-lg;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(147, 51, 234, 0.3);
+  }
+  
+  .floating {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .glow-border {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0; transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(1deg); }
+  75% { transform: translateY(-5px) rotate(-1deg); }
+}
